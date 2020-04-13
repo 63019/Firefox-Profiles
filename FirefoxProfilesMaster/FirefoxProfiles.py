@@ -43,7 +43,7 @@ mozillaSessionBackups = "C:/Users/Ricochet/AppData/Roaming/Mozilla/Firefox/Profi
 #///////////////////////////////////////////////////////////////
 
 #This checks to see if the session restore file exists. If it doesn't, it warns the user, because that causes problems with usage.
-if path.exists("C:/Users/Ricochet/AppData/Roaming/Mozilla/Firefox/Profiles/cndxvxhm.default/sessionstore.jsonlz4") == False:
+if path.exists(sessionStore) == False:
 
     def cont():
         noSessionWindow.destroy()
@@ -58,6 +58,11 @@ if path.exists("C:/Users/Ricochet/AppData/Roaming/Mozilla/Firefox/Profiles/cndxv
     continueButton.grid(column=0, row=1)
                      
     noSessionWindow.mainloop()
+    
+#Create the Profiles.txt file if it does not exist (github doesn't like empty files)
+if path.exists(MasterProfiles) == False:
+    f = open(MasterProfiles, "w")
+    f.close() 
 
 
 #This first gets the current time, so we can put two different items in the same file, and then uses that to generate a file and store the session restore file and backups in it.
