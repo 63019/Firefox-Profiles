@@ -1,0 +1,92 @@
+It is very simple to run the program: you double click the FirefoxProfiles.py file OR it's shortcut. But below, we will go into some quirks and things to know about the program to ensure proper usage, and the safety of your profiles.
+
+The biggest thing you need to know is that the program will not properly create profiles, switch profiles, update a profile, or revert to a backup unless Firefox is not running. This is very important. When Firefox closes, it generates a file called the sessionstore (I call it the session REstore file) file, which is what brings your tabs back up when you reopen Firefox. This file is not present while Firefox is in use. Please, close Firefox and wait at least 5 seconds (more if you have lots of tabs and windows) before you add a new profile, switch profiles, update a profile, or revert to a backup.
+
+
+------------------------
+ The profiles.txt file
+------------------------
+In your FirefoxProfilesMaster folder there is a Profiles.txt file. You may notice it contains all of your added Profiles. Should anything happen (you have a duplicate file, or the Profiles file does not match the profiles in your Firefox Profiles folder), or you get an error like then you can edit this folder with no consequence. All editing this folder does is edit the profiles that appear listed in the program, it does not remove any profiles. 
+
+When deleting a profile, if you decide to add a new one, there will more than likely be a profile that is just a space. Don't worry, this can be removed by opening the Profiles.txt and removing the linebreak. It'll probably look something like this:
+
+example
+example
+	   <----------- just delete this
+example
+example
+
+
+------------------------
+   Removing profiles
+------------------------
+
+Be careful when removing profiles. Entering random characters or not fully matching a profile's name when deleting it will incur no consequences, but if you attempt to delete a profile and have not entered anything into the prompt, there is a chance that your profiles will be deleted permanently. I have included a countermeasure for this, and your profiles are backed up at the beginning of each program start and end. Reverting is easy as well (covered in the buttons section), so accidentally losing your files is only an annoyance.
+
+
+------------------------
+	Backups
+------------------------
+
+A backup is created every time the program starts, and every time the program ends. In order to ensure the program properly creates an ending backup, please close the Firefox Profiles window, instead of the command prompt window.
+
+The backups are stored in the Firefox ProfilesBS and Firefox ProfilesBE folders, one for "Backups Starting" and one for "Backups Ending". Also inside these files are very useful little scripts which will clean up any backups that are older than 2 days, because the backup folders can get very bloated in size and once they reach a certain point they also no longer display on the "revert to backup" screen (haha). These scripts should probably have shortcuts created for them, because they can be annoying to navigate to.
+
+When reverting to a backup, make sure that Firefox is closed. 
+
+
+------------------------
+Buttons and what they do
+------------------------
+
+The buttons and what they do are straight forward, but I'll go through them here just in case.
+
+
+The buttons below the Profile List text on the left side of the screen are your Profile buttons. They are generated after you add a new profile and restart your program. If you click on them, they will switch your current tabs to that of the tabs you had when you added that profile.
+
+
+The Add new profile button spawns a prompt which allows you to input the name of a new profile, and will generate a new profile provided that the session restore file is present (Firefox is off). 
+
+
+The delete a profile button spawns an entry prompt which allows you to enter the name of a profile you would like to delete. This is case sensitive.
+
+
+The update a profile button spawns a new gui which allows you to select any of your current profiles for updating. What updating does is removes the old tabs that profile was associated with, and gives it the tabs you just had when Firefox was on. Please note that if you switch profiles by clicking on any of your generated profiles before you update a profile, the updated profile will be updated with the tabs of the profile you switched to. 
+
+
+PLEASE NOTE - The following two buttons, remove a backup and revert to a backup only work once per program startup. Meaning that if you were to open the remove a backup gui and then close it, to reopen it you would have to restart the program.
+
+The revert to a backup button spawns a new gui which allows you to select any backup from your saved backups folder. This will revert the profiles in your Firefox Profiles folder as well as your Profiles.txt back to how they were on the date of the selected profile. When opening the reverting gui, please note that the further down you go, the more recent the backups are. The backups have long names. Here is an example, explained.
+			V format is month, day, year, hour, minute, second.
+Profile Backup End 04-10-20 16. 09. 40
+^		^end signifies that backup was at the end of a session
+| Generic name
+
+
+The remove a backup button spawns a new gui which allows you to select a specific backup folder to remove. Keep in mind that while there will be no visual confirmation aside from the output in the command prompt, the backup is indeed deleted. Restarting the program will show the changes, just as when you are adding a profile.
+
+
+------------------------
+    Multiple windows
+------------------------
+The program will also save if you have multiple windows open! You just have to use Firefox's dedicated exit button, which can be found by clicking the three vertical bars near the top right corner of Firefox's browser, and looking at the very bottom of the resulting dropdown menu.
+
+
+------------------------
+	Errors
+------------------------
+
+      WHEN ADDING A NEW PROFILE
+      FileExistsError: [WinError 183] Cannot create a file when that file already exists:
+
+Don't worry about this one. All it means is that somehow, your Profiles.txt and Firefox Profiles folder somehow got out of sync. If you navigate to your Firefox Profiles folder (which is where you should see folders named after your profiles), then you can see all of your profiles. Opening the Profiles.txt file concurrently can let you see out of sync files.
+
+BE AWARE that usually after seeing this error, the issue will have resolved on it's own. The program will add the profile you typed in into your Profiles.txt, and it's already in your Firefox Profiles folder (as per the error), so all you need to do is restart the program. 
+
+
+      WHEN ADDING A NEW PROFILE
+      FileNotFoundError: [Errno 2] No such file or directory: (pointing toward the sessionstore.jsonlz4 file)
+
+Don't worry, this just means that the session restore file has not generated yet. This means that either Firefox is not all the way shut down, or that the file is still generating. This can happen when you have a lot of tabs or windows.
+
+BE AWARE that after seeing this error, a new profile will be generated in both the Firefox Profiles folder AND the Profiles.txt file. However, this profile will not hold any data, because the session restore file was not copied. You can fix this the hard way, by removing the profile in the Firefox Profiles folder and the Profiles.txt file, OR you can fix this the easy way by fully shutting off Firefox, restarting the program, and using the program's "Update a profile" button. This button is explained in the buttons section.
