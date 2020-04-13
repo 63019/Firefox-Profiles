@@ -1,3 +1,22 @@
+-------------------------------
+      Obtaining Packages
+-------------------------------
+
+This program requires you have Python installed. If you don't, please visit https://www.python.org/downloads/ and obtain a copy. This program was coded in Python 3. During the install, MAKE SURE YOU add Python to the PATH. Very important.
+
+The next thing you'll need to do is install the packages listed in the requirements.txt file. If you have installed python to the path, it should be as simple as opening a command prompt, and typing in "pip install (package name)".
+ 
+If you have not installed Python to the path, you will need to locate your Python folder. The default install location for Python is "C:\Users\YOUR ACC NAME\AppData\Local\Programs\Python\PythonX". Once inside this folder, open the "Scripts" folder. Now copy the path to the "Scripts" folder, open a command prompt and type in "cd ". After this, paste your copied path. Press enter. This should take you to the "Scripts" folder inside your command prompt. The command looks like this:
+
+cd C:\Users\Ricochet\AppData\Local\Programs\Python\Python37
+
+After this, you should be able to use pip to install Python packages (only in that command prompt. If you leave that command prompt but want to install more packages, you'll have to navigate to your "Scripts" folder agains). 
+
+
+-------------------------------
+   Storing/Editing the files
+-------------------------------
+
 Setup for this program requires you to edit 7 lines in the FirefoxProfiles.py file, 4 in the backupGui.py file, 2 in the rmBackup.py file, and move four folders to their permanent homes.
 
 The first thing you will do is find the permanent homes of your files. I store mine in %appdata%/Roaming, because that is where Mozilla Firefox is installed by default. To access Roaming on your windows machine, click the search bar on your task bar, type in %appdata% and press enter. Then, just plop your files right in. 
